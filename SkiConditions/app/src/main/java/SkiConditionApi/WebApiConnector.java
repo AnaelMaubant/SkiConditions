@@ -34,7 +34,9 @@ import java.text.Normalizer;
 
     static public JSONArray CreateStationsJson(HttpEntity page) throws IOException, JSONException
     {
-        JSONArray js = new JSONArray(EntityUtils.toString(page, HTTP.UTF_8));
+        String jsonText = EntityUtils.toString(page, HTTP.UTF_8);
+        //jsonText= jsonText.replace("\\\\", "\\");
+        JSONArray js = new JSONArray(jsonText);
         return js;
     }
 

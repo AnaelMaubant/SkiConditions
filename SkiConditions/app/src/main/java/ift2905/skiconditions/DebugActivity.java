@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import SkiConditionApi.StationsManager;
 import SkiConditionApi.WebApiConnector;
 
 
@@ -20,6 +21,8 @@ public class DebugActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_debug);
+
+        _stationManager = new StationsManager();
     }
 
 
@@ -47,27 +50,27 @@ public class DebugActivity extends ActionBarActivity {
     }
 
 
-private class DownloadStations extends AsyncTask<String, String, JSONArray> {
+private class DownloadStations extends AsyncTask<String, String, Boolean> {
 
     @Override
-    protected JSONArray doInBackground(String... params) {
-        JSONArray js = WebApiConnector.QueryStations();
-        return js;
+    protected Boolean doInBackground(String... params) {
+        Boolean loadIsASuccess = _stationManager.GetStationsFromWeb();
+        return loadIsASuccess;
     }
 
     @Override
-    protected void onPostExecute(JSONArray js)
+    protected void onPostExecute(Boolean loadIsASuccess)
     {
-        if(js == null)
+        if(!loadIsASuccess)
         {
             Toast.makeText(DebugActivity.this, "Error while getting json", Toast.LENGTH_SHORT).show();
         }
         else
         {
-
             Toast.makeText(DebugActivity.this, "Json Parsing was successful", Toast.LENGTH_SHORT).show();
 
         }
     }
 }
+    StationsManager _stationManager;
 }
