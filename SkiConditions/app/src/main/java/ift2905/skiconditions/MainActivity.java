@@ -1,5 +1,6 @@
 package ift2905.skiconditions;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -33,7 +34,21 @@ public class MainActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+        switch(id)
+        {
+            case R.id.action_settings :
+                return true;
+            case R.id.action_debug :
+                StartDebugActivity();
+                return true;
+        }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void StartDebugActivity()
+    {
+        Intent intent = new Intent(this, DebugActivity.class);
+        startActivity(intent);
     }
 }
