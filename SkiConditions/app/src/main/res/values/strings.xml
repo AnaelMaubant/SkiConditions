@@ -2,6 +2,7 @@
     <string name="app_name">SkiConditions</string>
     <string name="hello_world">hello</string>
     <string name="pref">Preferences</string>
+    <string name="title_activity_debug">DebugActivity</string>
     <string name="welcome_debug">Welcome to debug !</string>
     <string name="aide">Aide</string>
     <string name="info">Info</string>
