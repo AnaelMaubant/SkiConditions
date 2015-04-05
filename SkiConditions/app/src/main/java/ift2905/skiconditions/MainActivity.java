@@ -1,6 +1,7 @@
 package ift2905.skiconditions;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,6 +14,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        new DownloadStations().execute();
         setContentView(R.layout.activity_main);
     }
 
@@ -54,5 +56,67 @@ public class MainActivity extends ActionBarActivity {
     {
         Intent intent = new Intent(this, DebugActivity.class);
         startActivity(intent);
+    }
+
+    private class DownloadStations extends AsyncTask<String, String, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(String... params) {
+            Boolean loadIsASuccess = ((SkiConditionApplication)getApplication()).GetStationManager().GetStationsFromWeb();
+            return loadIsASuccess;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean loadIsASuccess) {
+            if (!loadIsASuccess) {
+                Toast.makeText(MainActivity.this, "Error while getting json", Toast.LENGTH_SHORT).show();
+                new LoadStations().execute();
+            } else {
+                Toast.makeText(MainActivity.this, "Json Parsing was successful", Toast.LENGTH_SHORT).show();
+                new SaveStations().execute();
+            }
+        }
+    }
+
+    private class SaveStations extends  AsyncTask<String, String, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(String... params)
+        {
+
+            boolean isASuccess = ((SkiConditionApplication)getApplication()).GetStationManager().SaveStations(getBaseContext());
+            return isASuccess;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean saveIsASuccess) {
+            if (!saveIsASuccess) {
+                Toast.makeText(MainActivity.this, "Error while saving stations", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(MainActivity.this, "Stations successfully save in db", Toast.LENGTH_SHORT).show();
+
+            }
+        }
+    }
+
+    private class LoadStations extends  AsyncTask<String, String, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(String... params)
+        {
+
+            boolean isASuccess = ((SkiConditionApplication)getApplication()).GetStationManager().LoadStations(getBaseContext());
+            return isASuccess;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean saveIsASuccess) {
+            if (!saveIsASuccess) {
+                Toast.makeText(MainActivity.this, "Error while loading stations", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(MainActivity.this, "Stations successfully load from db", Toast.LENGTH_SHORT).show();
+
+            }
+        }
     }
 }

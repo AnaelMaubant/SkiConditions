@@ -33,7 +33,8 @@ public final class StationsDbContract {
             StationEntry.COLUMN_NAME_TOTALTRAILS + INTEGER_TYPE + COMMA_SEP +
             StationEntry.COLUMN_NAME_SNOWQUALITY + TEXT_TYPE + COMMA_SEP +
             StationEntry.COLUMN_NAME_BASEQUALITY + TEXT_TYPE + COMMA_SEP +
-            StationEntry.COLUMN_NAME_COVERQUALITY + TEXT_TYPE + " )";
+            StationEntry.COLUMN_NAME_COVERQUALITY + TEXT_TYPE + COMMA_SEP +
+            StationEntry.COLUMN_NAME_FAVORITE + INTEGER_TYPE +" )";
 
     public static String SQL_DELETE_TABLE = "DROP TABLE IF EXISTS " + StationEntry.TABLE_NAME;
 
@@ -65,6 +66,8 @@ public final class StationsDbContract {
         public static final String COLUMN_NAME_SNOWQUALITY = "snowquality";
         public static final String COLUMN_NAME_BASEQUALITY = "basequality";
         public static final String COLUMN_NAME_COVERQUALITY = "coverquality";
+
+        public static final String COLUMN_NAME_FAVORITE = "favorite";
     }
 
 

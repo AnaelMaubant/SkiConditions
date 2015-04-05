@@ -35,7 +35,7 @@ public class StationBuilder {
             String snowQuality = js.getString("snow");
             String baseQuality = js.getString("base");
             String coverQuality = js.getString("cover");
-            station = new Station(id, meteomediaID, lastUpdate, name, snowReports, acc24, acc48, acc7Days, accSeason, trails, snowQuality, baseQuality, coverQuality);
+            station = new Station(id, meteomediaID, lastUpdate, name, snowReports, acc24, acc48, acc7Days, accSeason, trails, snowQuality, baseQuality, coverQuality, 0);
         }
         catch(JSONException e)
         {
@@ -64,7 +64,8 @@ public class StationBuilder {
         String snowQuality = cursor.getString(17);
         String baseQuality = cursor.getString(18);
         String coverQuality = cursor.getString(19);
-        station = new Station(id, meteomediaID, lastUpdate, name, snowReports, acc24, acc48, acc7Days, accSeason, trails, snowQuality, baseQuality, coverQuality);
+        int favorite = cursor.getInt(20);
+        station = new Station(id, meteomediaID, lastUpdate, name, snowReports, acc24, acc48, acc7Days, accSeason, trails, snowQuality, baseQuality, coverQuality, favorite);
 
         return station;
     }

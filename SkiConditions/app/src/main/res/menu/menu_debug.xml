@@ -9,4 +9,7 @@
 
     <item android:id="@+id/Debug_load" android:title="Load stations"
         android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/Go_to_list" android:title="Go to stations list"
+        android:orderInCategory="100" app:showAsAction="never" />
 </menu>

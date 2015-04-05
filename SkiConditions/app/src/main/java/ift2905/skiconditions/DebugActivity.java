@@ -1,5 +1,6 @@
 package ift2905.skiconditions;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -50,6 +51,11 @@ public class DebugActivity extends ActionBarActivity {
         {
             new LoadStations().execute();
             return true;
+        }
+        else if (id == R.id.Go_to_list)
+        {
+            Intent intent = new Intent(this, DebugListActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

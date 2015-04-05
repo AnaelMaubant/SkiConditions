@@ -16,7 +16,7 @@ public class Station {
 
     public Station(int _id, String _meteoMediaId, String _lastUpdate, String _name,
                    HashMap<Integer, String> _snowReports,int _acc24, int _acc48, int _acc7Days, int _accSeason,
-                   Pair<Integer, Integer> _trails, String _snowQuality, String _baseQuality, String _coverQuality)
+                   Pair<Integer, Integer> _trails, String _snowQuality, String _baseQuality, String _coverQuality, int _favorite)
     {
         this._coverQuality = _coverQuality;
         this._id = _id;
@@ -31,6 +31,7 @@ public class Station {
         this._trails = _trails;
         this._snowQuality = _snowQuality;
         this._baseQuality = _baseQuality;
+        this._favorite = _favorite;
     }
 
     public int get_id() {
@@ -85,6 +86,7 @@ public class Station {
         return _coverQuality;
     }
 
+    public int get_favorite() { return _favorite; }
     private  int _id;
     private String _meteoMediaId;
     private String _lastUpdate;
@@ -100,6 +102,8 @@ public class Station {
     private String _snowQuality;
     private String _baseQuality;
     private String _coverQuality;
+
+    private int _favorite;
 
 
 

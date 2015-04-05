@@ -27,7 +27,7 @@ public class StationsManager {
     public boolean SaveStations(Context context)
     {
         StationsDbOperations operations = new StationsDbOperations(context);
-        boolean isASuccess = operations.AddAllStations(this);
+        boolean isASuccess = operations.AddOrUpdateAllStations(this);
         return isASuccess;
     }
 

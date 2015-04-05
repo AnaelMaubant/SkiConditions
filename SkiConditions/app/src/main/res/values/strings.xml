@@ -6,4 +6,6 @@
     <string name="welcome_debug">Welcome to debug !</string>
     <string name="aide">Aide</string>
     <string name="info">Info</string>
+    <string name="title_activity_debug_list">DebugListActivity</string>
+    <string name="action_settings">Settings</string>
 </resources>
