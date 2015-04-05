@@ -1,5 +1,7 @@
 package SkiConditionApi;
 
+import android.content.Context;
+import android.database.Cursor;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -8,21 +10,35 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import DbHelper.StationsDbOperations;
+
 /**
  * Created by anael on 2015-04-02.
  */
 public class StationsManager {
 
-    void LoadStations()
-    {}
+    public boolean LoadStations(Context context)
+    {
+        StationsDbOperations operations = new StationsDbOperations(context);
+        _stations = operations.ReadStations();
+        return _stations.size() > 0;
+    }
 
-    void SaveStations()
-    {}
+    public boolean SaveStations(Context context)
+    {
+        StationsDbOperations operations = new StationsDbOperations(context);
+        boolean isASuccess = operations.AddAllStations(this);
+        return isASuccess;
+    }
 
     public Boolean GetStationsFromWeb()
     {
         _stations = new HashMap<String, Station>();
         JSONArray js = WebApiConnector.QueryStations();
+        if(js == null)
+        {
+            return false;
+        }
 
         for(int i=0; i<js.length(); i++)
         {
@@ -41,6 +57,15 @@ public class StationsManager {
             }
         }
         return _stations.size() >0;
+    }
+
+    public int GetStationsNumber()
+    {
+        return _stations.size();
+    }
+
+    public HashMap<String, Station> get_stations() {
+        return _stations;
     }
 
     private HashMap<String, Station> _stations;

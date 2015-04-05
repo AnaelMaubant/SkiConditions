@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import DbHelper.StationsDbOperations;
 import SkiConditionApi.StationsManager;
 import SkiConditionApi.WebApiConnector;
 
@@ -45,32 +46,77 @@ public class DebugActivity extends ActionBarActivity {
             new DownloadStations().execute();
             return true;
         }
+        else if (id == R.id.Debug_load)
+        {
+            new LoadStations().execute();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
 
 
-private class DownloadStations extends AsyncTask<String, String, Boolean> {
+    private class DownloadStations extends AsyncTask<String, String, Boolean> {
 
-    @Override
-    protected Boolean doInBackground(String... params) {
-        Boolean loadIsASuccess = _stationManager.GetStationsFromWeb();
-        return loadIsASuccess;
-    }
-
-    @Override
-    protected void onPostExecute(Boolean loadIsASuccess)
-    {
-        if(!loadIsASuccess)
-        {
-            Toast.makeText(DebugActivity.this, "Error while getting json", Toast.LENGTH_SHORT).show();
+        @Override
+        protected Boolean doInBackground(String... params) {
+            Boolean loadIsASuccess = _stationManager.GetStationsFromWeb();
+            return loadIsASuccess;
         }
-        else
-        {
-            Toast.makeText(DebugActivity.this, "Json Parsing was successful", Toast.LENGTH_SHORT).show();
 
+        @Override
+        protected void onPostExecute(Boolean loadIsASuccess) {
+            if (!loadIsASuccess) {
+                Toast.makeText(DebugActivity.this, "Error while getting json", Toast.LENGTH_SHORT).show();
+                new LoadStations().execute();
+            } else {
+                Toast.makeText(DebugActivity.this, "Json Parsing was successful", Toast.LENGTH_SHORT).show();
+                new SaveStations().execute();
+            }
         }
     }
-}
+
+    private class SaveStations extends  AsyncTask<String, String, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(String... params)
+        {
+
+            boolean isASuccess = _stationManager.SaveStations(getBaseContext());
+            return isASuccess;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean saveIsASuccess) {
+            if (!saveIsASuccess) {
+                Toast.makeText(DebugActivity.this, "Error while saving stations", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(DebugActivity.this, "Stations successfully save in db", Toast.LENGTH_SHORT).show();
+
+            }
+        }
+    }
+
+    private class LoadStations extends  AsyncTask<String, String, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(String... params)
+        {
+
+            boolean isASuccess = _stationManager.LoadStations(getBaseContext());
+            return isASuccess;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean saveIsASuccess) {
+            if (!saveIsASuccess) {
+                Toast.makeText(DebugActivity.this, "Error while loading stations", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(DebugActivity.this, "Stations successfully load from db", Toast.LENGTH_SHORT).show();
+
+            }
+        }
+    }
+
     StationsManager _stationManager;
 }

@@ -14,7 +14,7 @@ import java.util.Vector;
  */
 public class Station {
 
-    public Station(String _id, String _meteoMediaId, String _lastUpdate, String _name,
+    public Station(int _id, String _meteoMediaId, String _lastUpdate, String _name,
                    HashMap<Integer, String> _snowReports,int _acc24, int _acc48, int _acc7Days, int _accSeason,
                    Pair<Integer, Integer> _trails, String _snowQuality, String _baseQuality, String _coverQuality)
     {
@@ -33,7 +33,7 @@ public class Station {
         this._baseQuality = _baseQuality;
     }
 
-    public String get_id() {
+    public int get_id() {
         return _id;
     }
 
@@ -85,7 +85,7 @@ public class Station {
         return _coverQuality;
     }
 
-    private  String _id;
+    private  int _id;
     private String _meteoMediaId;
     private String _lastUpdate;
     private String _name;

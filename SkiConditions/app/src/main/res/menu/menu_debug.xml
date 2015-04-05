@@ -6,4 +6,7 @@
 
     <item android:id="@+id/action_settings" android:title="Launch Debug"
         android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/Debug_load" android:title="Load stations"
+        android:orderInCategory="100" app:showAsAction="never" />
 </menu>
