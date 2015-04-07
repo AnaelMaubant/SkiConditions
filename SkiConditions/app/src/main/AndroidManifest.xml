@@ -27,6 +27,10 @@
             android:name=".DebugListActivity"
             android:label="@string/title_activity_debug_list" >
         </activity>
+        <activity
+            android:name=".StationActivity"
+            android:label="@string/title_activity_station" >
+        </activity>
     </application>
 
 </manifest>

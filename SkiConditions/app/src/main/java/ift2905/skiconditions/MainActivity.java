@@ -35,6 +35,7 @@ public class MainActivity extends ActionBarActivity {
             case R.id.pref:
 
                 Toast.makeText(getBaseContext(), "You selected Preference", Toast.LENGTH_SHORT).show();
+
                 return true;
 
             case R.id.aide:
@@ -45,11 +46,22 @@ public class MainActivity extends ActionBarActivity {
                 Toast.makeText(getBaseContext(), "You selected Info ", Toast.LENGTH_SHORT).show();
                 return true;
 
+            case R.id.testPage:
+                StartStationActivity();
+                Toast.makeText(getBaseContext(), "You selected Test Page", Toast.LENGTH_SHORT).show();
+                return true;
+
             case R.id.action_debug :
                 StartDebugActivity();
                 return true;
         }
         return true;
+    }
+
+    public void StartStationActivity()
+    {
+        Intent intent = new Intent(this, StationActivity.class);
+        startActivity(intent);
     }
 
     public void StartDebugActivity()

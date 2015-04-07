@@ -19,6 +19,13 @@
         />
 
     <item
+        android:id="@+id/testPage"
+        android:title="@string/testPage"
+        android:orderInCategory="300"
+        app:showAsAction="never"
+        />
+
+    <item
         android:id="@+id/info"
         android:title="@string/info"
         android:orderInCategory="300"
