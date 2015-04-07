@@ -6,11 +6,16 @@
     android:layout_height="match_parent"
     android:weightSum="1"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:gravity="bottom">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_height="82dp"
+        android:paddingLeft="20dp"
+        android:gravity="center_vertical"
+        android:layout_weight="0.44">
 
         <ImageView
             android:layout_width="50dp"
@@ -21,27 +26,56 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/nomStation"
             android:id="@+id/textView"
             android:gravity="center_vertical|right"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textSize="30sp" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_height="108dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:gravity="center_vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/degre"
             android:id="@+id/textView2"
+            android:textSize="40sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Pistes"
             android:id="@+id/textView3"
             android:gravity="right"
+            android:textSize="24dp"
+            android:layout_weight="1" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nbPistes"
+            android:id="@+id/textView4"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="285dp"
+        android:weightSum="1"
+        android:background="#ffb4d7ff"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_gravity="bottom">
 
         <LinearLayout
             android:orientation="horizontal"
