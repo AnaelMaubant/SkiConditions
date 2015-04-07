@@ -10,10 +10,57 @@
     android:background="#ffc8f6ff">
 
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:measureWithLargestChild="true"
+        android:gravity="bottom"
+        android:id="@+id/bottomButtons"
+        android:layout_gravity="bottom">
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageButton2"
+            android:src="@mipmap/favoris"
+            android:layout_weight="1"
+            android:background="#ffc622ff"
+            android:adjustViewBounds="false" />
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageButton3"
+            android:src="@mipmap/website"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_light"
+            android:adjustViewBounds="false" />
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageButton4"
+            android:src="@mipmap/carte"
+            android:layout_weight="1"
+            android:background="@android:color/holo_green_dark"
+            android:adjustViewBounds="false" />
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageButton5"
+            android:src="@mipmap/website"
+            android:layout_weight="1"
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            android:focusable="false"
+            android:background="#ffff606b" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:paddingBottom="5dp"
-        android:showDividers="end">
+        android:showDividers="end"
+        android:layout_above="@id/bottomButtons">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -395,52 +442,6 @@
 
             </LinearLayout>
         </ScrollView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:measureWithLargestChild="true"
-        android:gravity="bottom"
-        android:id="@+id/bottomButtons"
-        android:layout_gravity="bottom">
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/imageButton2"
-            android:src="@mipmap/favoris"
-            android:layout_weight="1"
-            android:background="#ffc622ff"
-            android:adjustViewBounds="false" />
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/imageButton3"
-            android:src="@mipmap/website"
-            android:layout_weight="1"
-            android:background="@android:color/holo_orange_light"
-            android:adjustViewBounds="false" />
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imageButton4"
-            android:src="@mipmap/carte"
-            android:layout_weight="1"
-            android:background="@android:color/holo_green_dark"
-            android:adjustViewBounds="false" />
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imageButton5"
-            android:src="@mipmap/website"
-            android:layout_weight="1"
-            android:adjustViewBounds="false"
-            android:cropToPadding="false"
-            android:focusable="false"
-            android:background="#ffff606b" />
     </LinearLayout>
 
 </RelativeLayout>
