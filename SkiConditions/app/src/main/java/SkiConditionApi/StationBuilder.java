@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.util.Log;
 import android.util.Pair;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,6 +26,9 @@ public class StationBuilder {
 
             HashMap<Integer, String> snowReports = BuildSnowReports(js);
 
+            String temperature = js.getString("temperature");
+            String weather = js.getString("weather");
+
             int acc24 = BuildAccumulation(js, "acc24");
             int acc48 = BuildAccumulation(js, "acc48");
             int acc7Days = BuildAccumulation(js, "acc7");
@@ -35,7 +39,7 @@ public class StationBuilder {
             String snowQuality = js.getString("snow");
             String baseQuality = js.getString("base");
             String coverQuality = js.getString("cover");
-            station = new Station(id, meteomediaID, lastUpdate, name, snowReports, acc24, acc48, acc7Days, accSeason, trails, snowQuality, baseQuality, coverQuality, 0);
+            station = new Station(id, meteomediaID, lastUpdate, name, snowReports, temperature, weather,acc24, acc48, acc7Days, accSeason, trails, snowQuality, baseQuality, coverQuality, 0);
         }
         catch(JSONException e)
         {
@@ -54,10 +58,13 @@ public class StationBuilder {
 
         HashMap<Integer, String> snowReports = BuildSnowReports(cursor);
 
-        int acc24 = cursor.getInt(11);
-        int acc48 = cursor.getInt(12);
-        int acc7Days = cursor.getInt(13);
-        int accSeason = cursor.getInt(14);
+        String temperature = cursor.getString(11);
+        String weather = cursor.getString(12);
+
+        int acc24 = cursor.getInt(13);
+        int acc48 = cursor.getInt(14);
+        int acc7Days = cursor.getInt(15);
+        int accSeason = cursor.getInt(16);
 
         Pair<Integer, Integer> trails = new Pair<Integer, Integer>(cursor.getInt(15), cursor.getInt(16));
 
@@ -65,7 +72,7 @@ public class StationBuilder {
         String baseQuality = cursor.getString(18);
         String coverQuality = cursor.getString(19);
         int favorite = cursor.getInt(20);
-        station = new Station(id, meteomediaID, lastUpdate, name, snowReports, acc24, acc48, acc7Days, accSeason, trails, snowQuality, baseQuality, coverQuality, favorite);
+        station = new Station(id, meteomediaID, lastUpdate, name, snowReports, temperature, weather, acc24, acc48, acc7Days, accSeason, trails, snowQuality, baseQuality, coverQuality, favorite);
 
         return station;
     }
@@ -120,4 +127,5 @@ public class StationBuilder {
         int idNumber = Integer.parseInt(id);
         return idNumber;
     }
+
 }

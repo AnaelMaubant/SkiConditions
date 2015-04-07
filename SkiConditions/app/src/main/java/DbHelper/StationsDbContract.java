@@ -25,6 +25,8 @@ public final class StationsDbContract {
             StationEntry.COLUMN_NAME_SNOW5 + TEXT_TYPE + COMMA_SEP +
             StationEntry.COLUMN_NAME_SNOW6 + TEXT_TYPE + COMMA_SEP +
             StationEntry.COLUMN_NAME_SNOW7 + TEXT_TYPE + COMMA_SEP +
+            StationEntry.COLUMN_NAME_TEMPERATURE + TEXT_TYPE + COMMA_SEP +
+            StationEntry.COLUMN_NAME_WEATHER + TEXT_TYPE + COMMA_SEP +
             StationEntry.COLUMN_NAME_ACC24 + INTEGER_TYPE + COMMA_SEP +
             StationEntry.COLUMN_NAME_ACC48 + INTEGER_TYPE + COMMA_SEP +
             StationEntry.COLUMN_NAME_ACC7DAYS + INTEGER_TYPE + COMMA_SEP +
@@ -54,6 +56,9 @@ public final class StationsDbContract {
         public static final String COLUMN_NAME_SNOW5 = "snow5";
         public static final String COLUMN_NAME_SNOW6 = "snow6";
         public static final String COLUMN_NAME_SNOW7 = "snow7";
+
+        public static final String COLUMN_NAME_TEMPERATURE = "temperature";
+        public static final String COLUMN_NAME_WEATHER = "weather";
 
         public static final String COLUMN_NAME_ACC24 = "acc24";
         public static final String COLUMN_NAME_ACC48 = "acc48";

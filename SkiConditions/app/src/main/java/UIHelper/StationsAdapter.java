@@ -4,6 +4,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -57,8 +59,28 @@ public class StationsAdapter extends BaseAdapter{
 
         Map.Entry<String, Station> station = getItem(position);
 
-        ((TextView) result.findViewById(android.R.id.text1)).setText(Integer.toString(station.getValue().get_id()));
-        ((TextView) result.findViewById(android.R.id.text2)).setText(station.getKey());
+        ((TextView) result.findViewById(R.id.temperatureText)).setText(station.getValue().get_temperature());
+        ((TextView) result.findViewById(R.id.StationNameText)).setText(station.getKey());
+        ((TextView) result.findViewById(R.id.trailsText)).setText(station.getValue().get_trails().first + "/" + station.getValue().get_trails().second);
+
+        CheckBox favoriteBox = (CheckBox)result.findViewById(R.id.favorite_checkbox);
+
+        ImageView image = (ImageView)result.findViewById(R.id.weatherimage);
+
+        if(station.getValue().get_weather().equals("sunny"))
+        {
+            image.setImageResource(R.mipmap.sunnyicon);
+        }
+        else if(station.getValue().get_weather().equals("storm-clouds"))
+        {
+            image.setImageResource(R.mipmap.snowicon);
+        }
+        else
+        {
+            image.setImageResource(R.mipmap.cloudyicon);
+        }
+
+
 
         return result;
     }

@@ -32,7 +32,7 @@ import java.text.Normalizer;
         return response.getEntity();
     }
 
-    static public JSONArray CreateStationsJson(HttpEntity page) throws IOException, JSONException
+    static public JSONArray CreateJson(HttpEntity page) throws IOException, JSONException
     {
         String jsonText = EntityUtils.toString(page, HTTP.UTF_8);
         JSONArray js = new JSONArray(jsonText);
@@ -44,7 +44,7 @@ import java.text.Normalizer;
         JSONArray js = null;
         try
         {
-            js = CreateStationsJson(GetHttpPage(webApiUrl));
+            js = CreateJson(GetHttpPage(webApiUrl));
             Log.d("WebApiConnector", "Get json was successful");
         }
         catch(IOException ioExcep)
@@ -57,6 +57,8 @@ import java.text.Normalizer;
         }
         return js;
     }
+
+
 
     static final String webApiUrl = "http://step.polymtl.ca/~morathyl/";
 }

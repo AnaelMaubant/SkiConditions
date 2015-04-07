@@ -50,6 +50,9 @@ public class StationsDbOperations {
         values.put(StationsDbContract.StationEntry.COLUMN_NAME_SNOW6, station.get_snowReports().get(6));
         values.put(StationsDbContract.StationEntry.COLUMN_NAME_SNOW7, station.get_snowReports().get(7));
 
+        values.put(StationsDbContract.StationEntry.COLUMN_NAME_TEMPERATURE, station.get_temperature());
+        values.put(StationsDbContract.StationEntry.COLUMN_NAME_WEATHER, station.get_weather());
+
         values.put(StationsDbContract.StationEntry.COLUMN_NAME_ACC24, station.get_acc24());
         values.put(StationsDbContract.StationEntry.COLUMN_NAME_ACC48, station.get_acc48());
         values.put(StationsDbContract.StationEntry.COLUMN_NAME_ACC7DAYS, station.get_acc7Days());
@@ -85,6 +88,9 @@ public class StationsDbOperations {
         values.put(StationsDbContract.StationEntry.COLUMN_NAME_SNOW5, station.get_snowReports().get(5));
         values.put(StationsDbContract.StationEntry.COLUMN_NAME_SNOW6, station.get_snowReports().get(6));
         values.put(StationsDbContract.StationEntry.COLUMN_NAME_SNOW7, station.get_snowReports().get(7));
+
+        values.put(StationsDbContract.StationEntry.COLUMN_NAME_TEMPERATURE, station.get_temperature());
+        values.put(StationsDbContract.StationEntry.COLUMN_NAME_WEATHER, station.get_weather());
 
         values.put(StationsDbContract.StationEntry.COLUMN_NAME_ACC24, station.get_acc24());
         values.put(StationsDbContract.StationEntry.COLUMN_NAME_ACC48, station.get_acc48());

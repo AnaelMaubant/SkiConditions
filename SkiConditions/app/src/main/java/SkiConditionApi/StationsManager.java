@@ -47,7 +47,8 @@ public class StationsManager {
             try
             {
                 station = StationBuilder.BuildStation(js.getJSONObject(i));
-            } catch (JSONException e)
+            }
+            catch (JSONException e)
             {
                 Log.d("StationManager", e.getMessage());
             }
@@ -56,7 +57,8 @@ public class StationsManager {
                 _stations.put(station.get_name(), station);
             }
         }
-        return _stations.size() >0;
+        boolean result =_stations.size() >0;
+        return result;
     }
 
     public int GetStationsNumber()
