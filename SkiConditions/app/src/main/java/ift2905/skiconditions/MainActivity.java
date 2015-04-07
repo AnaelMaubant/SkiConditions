@@ -6,16 +6,25 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    ImageButton imgButton2;
+    ImageButton imgButton3;
+    ImageButton imgButton4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         new DownloadStations().execute();
         setContentView(R.layout.activity_main);
+        addButtonListener();
+        addTextListener();
     }
 
 
@@ -31,7 +40,7 @@ public class MainActivity extends ActionBarActivity {
 
         super.onOptionsItemSelected(item);
 
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case R.id.pref:
 
                 Toast.makeText(getBaseContext(), "You selected Preference", Toast.LENGTH_SHORT).show();
@@ -51,21 +60,19 @@ public class MainActivity extends ActionBarActivity {
                 Toast.makeText(getBaseContext(), "You selected Test Page", Toast.LENGTH_SHORT).show();
                 return true;
 
-            case R.id.action_debug :
+            case R.id.action_debug:
                 StartDebugActivity();
                 return true;
         }
         return true;
     }
 
-    public void StartStationActivity()
-    {
+    public void StartStationActivity() {
         Intent intent = new Intent(this, StationActivity.class);
         startActivity(intent);
     }
 
-    public void StartDebugActivity()
-    {
+    public void StartDebugActivity() {
         Intent intent = new Intent(this, DebugActivity.class);
         startActivity(intent);
     }
@@ -74,7 +81,7 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         protected Boolean doInBackground(String... params) {
-            Boolean loadIsASuccess = ((SkiConditionApplication)getApplication()).GetStationManager().GetStationsFromWeb();
+            Boolean loadIsASuccess = ((SkiConditionApplication) getApplication()).GetStationManager().GetStationsFromWeb();
             return loadIsASuccess;
         }
 
@@ -90,13 +97,12 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    private class SaveStations extends  AsyncTask<String, String, Boolean> {
+    private class SaveStations extends AsyncTask<String, String, Boolean> {
 
         @Override
-        protected Boolean doInBackground(String... params)
-        {
+        protected Boolean doInBackground(String... params) {
 
-            boolean isASuccess = ((SkiConditionApplication)getApplication()).GetStationManager().SaveStations(getBaseContext());
+            boolean isASuccess = ((SkiConditionApplication) getApplication()).GetStationManager().SaveStations(getBaseContext());
             return isASuccess;
         }
 
@@ -111,13 +117,12 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    private class LoadStations extends  AsyncTask<String, String, Boolean> {
+    private class LoadStations extends AsyncTask<String, String, Boolean> {
 
         @Override
-        protected Boolean doInBackground(String... params)
-        {
+        protected Boolean doInBackground(String... params) {
 
-            boolean isASuccess = ((SkiConditionApplication)getApplication()).GetStationManager().LoadStations(getBaseContext());
+            boolean isASuccess = ((SkiConditionApplication) getApplication()).GetStationManager().LoadStations(getBaseContext());
             return isASuccess;
         }
 
@@ -131,4 +136,54 @@ public class MainActivity extends ActionBarActivity {
             }
         }
     }
+
+
+    public void addButtonListener() {
+        ImageButton imgButton1 = (ImageButton) findViewById(R.id.chercherButton);
+        imgButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "chercher une station!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        imgButton2 = (ImageButton) findViewById(R.id.favorisButton);
+        imgButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "montrer tous mes sites preferees!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        imgButton3 = (ImageButton) findViewById(R.id.randomButton);
+        imgButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "suggerer maintenant une station aleatoire!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        imgButton4 = (ImageButton) findViewById(R.id.mapButton);
+        imgButton4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "montrer la carte qui indique tous les stations!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public void addTextListener() {
+    TextView btn = (TextView) findViewById(R.id.nomStation);
+    btn.setOnClickListener(new View.OnClickListener() {
+
+        @Override
+        public void onClick (View v){
+            Toast.makeText(MainActivity.this, "Afficher maintenant la page de details de cette station!!", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+    );
+
+}
+
 }

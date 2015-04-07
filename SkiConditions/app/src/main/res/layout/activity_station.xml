@@ -14,51 +14,54 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:measureWithLargestChild="true"
+        android:measureWithLargestChild="false"
         android:gravity="bottom"
         android:id="@+id/bottomButtons"
-        android:layout_gravity="bottom">
+        android:layout_gravity="bottom"
+        android:weightSum="4">
 
         <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/imageButton2"
-            android:src="@mipmap/favoris"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/stationButton1"
+            android:src="@mipmap/map1"
             android:layout_weight="1"
-            android:background="#ffc622ff"
-            android:adjustViewBounds="false" />
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:padding="0dp" />
         <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/imageButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/stationButton2"
+            android:src="@mipmap/map2"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:padding="0dp" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/stationButton3"
+            android:src="@mipmap/weather"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:layout_margin="0dp"
+            android:padding="0dp" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/stationButton4"
             android:src="@mipmap/website"
             android:layout_weight="1"
-            android:background="@android:color/holo_orange_light"
-            android:adjustViewBounds="false" />
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imageButton4"
-            android:src="@mipmap/carte"
-            android:layout_weight="1"
-            android:background="@android:color/holo_green_dark"
-            android:adjustViewBounds="false" />
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imageButton5"
-            android:src="@mipmap/website"
-            android:layout_weight="1"
-            android:adjustViewBounds="false"
-            android:cropToPadding="false"
-            android:focusable="false"
-            android:background="#ffff606b" />
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:padding="0dp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
         android:showDividers="end"
         android:layout_above="@id/bottomButtons">
 
