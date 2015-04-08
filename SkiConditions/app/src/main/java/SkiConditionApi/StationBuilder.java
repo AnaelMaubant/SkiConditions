@@ -66,12 +66,13 @@ public class StationBuilder {
         int acc7Days = cursor.getInt(15);
         int accSeason = cursor.getInt(16);
 
-        Pair<Integer, Integer> trails = new Pair<Integer, Integer>(cursor.getInt(15), cursor.getInt(16));
+        Pair<Integer, Integer> trails = new Pair<Integer, Integer>(cursor.getInt(17), cursor.getInt(18));
 
-        String snowQuality = cursor.getString(17);
-        String baseQuality = cursor.getString(18);
-        String coverQuality = cursor.getString(19);
-        int favorite = cursor.getInt(20);
+        String snowQuality = cursor.getString(19);
+        String baseQuality = cursor.getString(20);
+        String coverQuality = cursor.getString(21);
+
+        int favorite = cursor.getInt(22);
         station = new Station(id, meteomediaID, lastUpdate, name, snowReports, temperature, weather, acc24, acc48, acc7Days, accSeason, trails, snowQuality, baseQuality, coverQuality, favorite);
 
         return station;

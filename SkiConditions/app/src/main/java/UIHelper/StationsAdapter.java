@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -12,11 +13,13 @@ import android.widget.TextView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import SkiConditionApi.Station;
 import SkiConditionApi.StationsManager;
 import ift2905.skiconditions.R;
+import ift2905.skiconditions.SkiConditionApplication;
 
 /**
  * Created by anael on 4/5/2015.
@@ -25,10 +28,14 @@ public class StationsAdapter extends BaseAdapter implements Filterable{
 
     public StationsAdapter(StationsManager stations)
     {
+        _stationManager = stations;
         _data = new ArrayList<Map.Entry<String, Station>>();
-        _data.addAll(stations.get_stations().entrySet());
+        _data.addAll(_stationManager.get_stations().entrySet());
 
         _stationFilterList = _data;
+
+        _checkboxesStates = new HashMap<String, Boolean>();
+        ConstructCheckBoxesState(_stationManager);
     }
 
     @Override
@@ -62,13 +69,40 @@ public class StationsAdapter extends BaseAdapter implements Filterable{
             result = convertView;
         }
 
-        Map.Entry<String, Station> station = getItem(position);
+        final Map.Entry<String, Station> station = getItem(position);
 
         ((TextView) result.findViewById(R.id.temperatureText)).setText(station.getValue().get_temperature() + "°C");
         ((TextView) result.findViewById(R.id.StationNameText)).setText(station.getKey());
         ((TextView) result.findViewById(R.id.trailsText)).setText(station.getValue().get_trails().first + "/" + station.getValue().get_trails().second);
 
         CheckBox favoriteBox = (CheckBox)result.findViewById(R.id.favorite_checkbox);
+
+        //favoriteBox.setChecked(_checkboxesStates.get(station.getKey()));
+
+        favoriteBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            }
+        });
+
+        favoriteBox.setChecked(_checkboxesStates.get(station.getKey()));
+
+        favoriteBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                _checkboxesStates.put(station.getKey(), isChecked);
+                if(isChecked)
+                {
+                    station.getValue().set_favorite(1);
+                }
+                else
+                {
+                    station.getValue().set_favorite(0);
+                }
+
+                _stationManager.NotifyFavoriteChanged(station.getValue());
+            }
+        });
 
         ImageView image = (ImageView)result.findViewById(R.id.weatherimage);
 
@@ -136,7 +170,25 @@ public class StationsAdapter extends BaseAdapter implements Filterable{
             notifyDataSetChanged();
         }
     }
+
+    private void ConstructCheckBoxesState(StationsManager stations)
+    {
+        for(Map.Entry<String, Station> entry: stations.get_stations().entrySet())
+        {
+            if(entry.getValue().get_favorite() == 1)
+            {
+                _checkboxesStates.put(entry.getKey(), true);
+            }
+            else
+            {
+                _checkboxesStates.put(entry.getKey(), false);
+            }
+        }
+    }
+
     private ArrayList<Map.Entry<String, Station>> _data;
     private ValueFilter listViewFilter;
     private ArrayList<Map.Entry<String, Station>> _stationFilterList;
+    private HashMap<String, Boolean> _checkboxesStates;
+    private StationsManager _stationManager;
 }

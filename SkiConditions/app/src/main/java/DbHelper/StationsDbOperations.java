@@ -135,6 +135,44 @@ public class StationsDbOperations {
 
     }
 
+    private boolean UpdateFavorite(Station station)
+    {
+        OpenDb();
+        ContentValues values = new ContentValues();
+
+        values.put(StationsDbContract.StationEntry.COLUMN_NAME_FAVORITE, station.get_favorite());
+
+        String selection = StationsDbContract.StationEntry.COLUMN_NAME_ENTRY_ID + " == ? AND " +
+                StationsDbContract.StationEntry.COLUMN_NAME_STATION_NAME + " == ?";
+
+        String[] selectionArgs = {Integer.toString(station.get_id()), station.get_name()};
+
+        int count = _db.update(StationsDbContract.StationEntry.TABLE_NAME, values, selection, selectionArgs);
+
+        CloseDb();
+
+        return count > 0;
+
+
+    }
+
+    public boolean SafeUpdateFavorite(Station station)
+    {
+        if(StationExists(station))
+        {
+            boolean isUpdated = UpdateFavorite(station);
+            if(!isUpdated)
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+        return true;
+    }
+
     public Boolean AddOrUpdateAllStations(StationsManager stationsManager)
     {
         for(Map.Entry<String, Station> stationEntry : stationsManager.get_stations().entrySet())

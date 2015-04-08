@@ -23,8 +23,7 @@ public class DebugActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_debug);
-
-        _stationManager = new StationsManager();
+        _stationManager = ((SkiConditionApplication)getApplication()).GetStationManager();
     }
 
 

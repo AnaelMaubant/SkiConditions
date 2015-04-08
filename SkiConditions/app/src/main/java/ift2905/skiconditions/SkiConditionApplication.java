@@ -15,7 +15,7 @@ public class SkiConditionApplication extends Application {
     public void onCreate()
     {
         super.onCreate();
-        _stationManager = new StationsManager();
+        _stationManager = new StationsManager(getBaseContext());
     }
 
     public StationsManager GetStationManager()

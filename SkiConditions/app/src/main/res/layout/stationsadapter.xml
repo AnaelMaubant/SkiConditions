@@ -15,7 +15,6 @@
             style="?android:attr/starStyle"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:background="@color/button_material_dark"
 
             />
 

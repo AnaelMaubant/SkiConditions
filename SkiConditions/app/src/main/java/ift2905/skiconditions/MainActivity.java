@@ -112,6 +112,7 @@ public class MainActivity extends ActionBarActivity {
                 Toast.makeText(MainActivity.this, "Error while saving stations", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(MainActivity.this, "Stations successfully save in db", Toast.LENGTH_SHORT).show();
+                new LoadStations().execute();
 
             }
         }
