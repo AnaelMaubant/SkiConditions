@@ -4,50 +4,88 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity"
-    android:gravity="bottom">
+    android:gravity="top"
+    android:weightSum="4">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="82dp"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:paddingLeft="20dp"
-        android:gravity="center_vertical"
-        android:layout_weight="0.44">
+        android:paddingRight="20dp">
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/imageView" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right|top">
 
-        <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Émis:  " />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/emisHeure"
+                android:id="@+id/emis" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/nomStation"
-            android:id="@+id/nomStation"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical|right"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:textSize="30sp"
-            android:clickable="true" />
+            android:layout_gravity="center_vertical|right">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/tempIcon" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/nomStation"
+                android:id="@+id/nomStation"
+                android:gravity="center_vertical|right"
+                android:textSize="25dp"
+                android:clickable="true" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="108dp"
+        android:layout_height="0dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:gravity="center_vertical">
+        android:layout_weight="1"
+        android:gravity="center_vertical|center_horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/degre"
+            android:id="@+id/temp"
+            android:textSize="40sp"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="C"
             android:id="@+id/textView2"
             android:textSize="40sp" />
 
@@ -59,30 +97,35 @@
             android:id="@+id/textView3"
             android:gravity="right"
             android:textSize="24dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_marginRight="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/nbPistes"
-            android:id="@+id/textView4"
-            android:textSize="30sp" />
+            android:id="@+id/pistes"
+            android:textSize="40dp" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="285dp"
-        android:weightSum="1"
+        android:layout_height="0dp"
         android:background="#ffb4d7ff"
-        android:gravity="center_vertical|center_horizontal"
-        android:layout_gravity="bottom">
+        android:padding="10dp"
+        android:touchscreenBlocksFocus="false"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:layout_weight="2"
+        android:weightSum="2">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.43">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal">
 
             <ImageButton
                 android:layout_width="match_parent"
@@ -92,7 +135,8 @@
                 android:padding="20dp"
                 android:paddingLeft="20dp"
                 android:layout_weight="1"
-                android:layout_margin="10dp" />
+                android:layout_margin="10dp"
+                android:src="@mipmap/map1"/>
 
             <ImageButton
                 android:layout_width="match_parent"
@@ -105,29 +149,32 @@
                 android:paddingTop="10dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="10dp"
-                android:layout_margin="10dp" />
+                android:layout_margin="10dp"
+                android:src="@mipmap/map1"/>
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.52">
+            android:layout_weight="1">
 
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/randomButton"
                 android:layout_weight="1"
-                android:layout_margin="10dp" />
+                android:layout_margin="10dp"
+                android:src="@mipmap/map1"/>
 
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/mapButton"
                 android:layout_weight="1"
-                android:layout_margin="10dp" />
+                android:layout_margin="10dp"
+                android:src="@mipmap/map1"/>
         </LinearLayout>
     </LinearLayout>
 
