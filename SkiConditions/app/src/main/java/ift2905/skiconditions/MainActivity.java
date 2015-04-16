@@ -98,21 +98,6 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
-    public void StartTextActivity() {
-        Intent intent = new Intent();
-        intent.setClass(MainActivity.this, StationActivity.class);
-        Bundle bundle = new Bundle();
-
-        //mettre ca dans le bundle
-        bundle.putString("name", stationPrincipal);
-        bundle.putString("temperature", t);
-        bundle.putString("pistes", p.first + "/" + p.second);
-        bundle.putString("update", d);
-
-        intent.putExtras(bundle);
-
-        startActivity(intent);
-    }
 
     private class DownloadStations extends AsyncTask<String, String, Boolean> {
 
@@ -259,7 +244,6 @@ public class MainActivity extends ActionBarActivity {
         @Override
         public void onClick (View v){
             Toast.makeText(MainActivity.this, "Afficher maintenant la page de details de cette station!!", Toast.LENGTH_SHORT).show();
-            StartTextActivity();
 
         }
     }

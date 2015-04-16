@@ -14,12 +14,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+
 import SkiConditionApi.Station;
 
 
 public class StationActivity extends Activity {
     ImageButton imgButton1,imgButton2,imgButton3,imgButton4;
-    TextView view_name,view_temp,view_pistes,view_updateDate;
+    TextView view_name,view_temp,view_pistes,view_updateDate,view_profondeur,view_neigeDerniere,view_condition;
+    TextView view_snowReport1, view_snowReport2,view_snowReport3,view_snowReport4,view_snowReport5,view_snowReport6,view_snowReport7;
 
 
     @Override
@@ -27,7 +30,6 @@ public class StationActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_station);
         findViews();
-        getResults();
         addButtonListener();
 
     }
@@ -90,26 +92,51 @@ public class StationActivity extends Activity {
 
     public void findViews(){
 
+        view_updateDate= (TextView)findViewById(R.id.emis_activity2);
         view_name = (TextView)findViewById(R.id.nomStation_activity2);
         view_temp= (TextView)findViewById(R.id.temperature_activity2);
         view_pistes= (TextView)findViewById(R.id.pistes_activity2);
-        view_updateDate= (TextView)findViewById(R.id.emis_activity2);
+        view_profondeur= (TextView)findViewById(R.id.profondeur);
+        view_neigeDerniere=(TextView)findViewById(R.id.derniere_neige);
+        view_condition=(TextView)findViewById(R.id.conditionSki);
+        view_snowReport1=(TextView)findViewById(R.id.snow1);
+        view_snowReport2=(TextView)findViewById(R.id.snow2);
+        view_snowReport3=(TextView)findViewById(R.id.snow3);
+        view_snowReport4=(TextView)findViewById(R.id.snow4);
+        view_snowReport5=(TextView)findViewById(R.id.snow5);
+        view_snowReport6=(TextView)findViewById(R.id.snow6);
+        view_snowReport7=(TextView)findViewById(R.id.snow7);
+
+
 
     }
 
-    public void getResults(){
+    public void setData(Station s){
 
-        Bundle bundle = this.getIntent().getExtras();
-        String name = bundle.getString("name");
-        String temp = bundle.getString("temperature");
-        String pistes = bundle.getString("pistes");
-        String update = bundle.getString("update");
+        String name = s.get_name();
+        String temp = s.get_temperature();
+        String pistes = s.get_trails().first + "/" + s.get_trails().second;
+        String update = s.get_lastUpdate();
+        int profondeur= s.get_accSeason();
+        int acc24=s.get_acc24();
+        String cond_ski=s.get_snowQuality();
+        HashMap<Integer, String> snowreport =s.get_snowReports();
 
-        // mettre ca dans l interface
+        // mettre ca dans l'interface
         view_name.setText(name);
         view_temp.setText(temp);
         view_pistes.setText(pistes);
         view_updateDate.setText(update);
+        view_profondeur.setText(profondeur+" cm");
+        view_neigeDerniere.setText(acc24+" cm");
+        view_condition.setText(cond_ski);
+        view_snowReport1.setText(snowreport.get("snow1"));
+        view_snowReport2.setText(snowreport.get("snow2"));
+        view_snowReport3.setText(snowreport.get("snow3"));
+        view_snowReport4.setText(snowreport.get("snow4"));
+        view_snowReport5.setText(snowreport.get("snow5"));
+        view_snowReport6.setText(snowreport.get("snow6"));
+        view_snowReport7.setText(snowreport.get("snow7"));
 
     }
 }

@@ -89,8 +89,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Émis:  "
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="Émis le:  "
                         android:gravity="right|top" />
 
                     <TextView
@@ -106,7 +106,8 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="fill_vertical">
+                    android:gravity="fill_vertical"
+                    android:layout_marginBottom="20dp">
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -118,13 +119,13 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:id="@+id/temp" />
+                            android:id="@+id/viewTemp" />
 
                         <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
-                            android:layout_below="@id/temp">
+                            android:layout_below="@id/viewTemp">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -179,35 +180,6 @@
                                 android:id="@+id/favorisButton" />
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:gravity="right|top"
-                            android:layout_gravity="top">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/imageView2"
-                                android:layout_marginRight="10dp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:text="n"
-                                android:id="@+id/distance"
-                                android:layout_marginRight="5dp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:text="km" />
-
-                        </LinearLayout>
-
                     </LinearLayout>
 
 
@@ -219,37 +191,52 @@
                     android:layout_height="wrap_content"
                     android:weightSum="1"
                     android:paddingBottom="15dp"
-                    android:layout_marginTop="20dp">
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Pistes Ouvertes"
-                        android:id="@+id/textView5" />
-
-                    <Space
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.34" />
+                        android:id="@+id/textView5"
+                        android:layout_marginRight="20dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="30/15"
+                        android:text="n / n"
                         android:id="@+id/pistes_activity2"
                         android:textSize="30dp" />
                 </LinearLayout>
 
-                <Space
-                    android:layout_width="37dp"
-                    android:layout_height="17dp" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Condition de ski"
+                        android:id="@+id/textView4" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:id="@+id/conditionSki" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp">
 
                     <LinearLayout
                         android:orientation="vertical"
@@ -257,6 +244,7 @@
                         android:layout_height="fill_parent"
                         android:weightSum="1"
                         android:layout_weight="1"
+                        android:layout_marginBottom="20dp"
                         android:layout_marginRight="4dp">
 
                         <TextView
@@ -264,12 +252,18 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:text="Profondeur"
-                            android:id="@+id/textView7" />
+                            android:id="@+id/textView7"
+                            android:layout_marginBottom="10dp" />
 
-                        <ImageView
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="180dp"
-                            android:id="@+id/imageView3" />
+                            android:id="@+id/profondeur"
+                            android:background="#ffadedff"
+                            android:autoText="false"
+                            android:text="-"
+                            android:textSize="40dp"
+                            android:gravity="center_vertical|center_horizontal" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -284,29 +278,89 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:text="Neige dernière 24h"
-                            android:id="@+id/textView8" />
+                            android:id="@+id/textView8"
+                            android:layout_marginBottom="10dp" />
 
-                        <ImageView
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="180dp"
-                            android:id="@+id/imageView4" />
+                            android:id="@+id/derniere_neige"
+                            android:background="#ffadedff"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:text="-"
+                            android:textSize="40dp" />
                     </LinearLayout>
                 </LinearLayout>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/diagram"
-                    android:layout_gravity="center_horizontal"
-                    android:padding="10dp"
-                    android:src="@mipmap/piechart"
-                    android:layout_marginBottom="10dp" />
 
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Neiges des 7 prochains jours" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="-"
+                        android:id="@+id/snow1" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="-"
+                        android:id="@+id/snow2" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="-"
+                        android:id="@+id/snow3" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="-"
+                        android:id="@+id/snow4" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="-"
+                        android:id="@+id/snow5" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="-"
+                        android:id="@+id/snow6" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="-"
+                        android:id="@+id/snow7" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/distribution_pistes"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="10dp"
+                    android:src="@mipmap/piechart"
+                    android:layout_marginBottom="20dp" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -398,7 +452,7 @@
                     android:orientation="horizontal"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -419,7 +473,7 @@
                     android:orientation="horizontal"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
