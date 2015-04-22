@@ -32,5 +32,8 @@ tools:context="ift2905.skiconditions.DebugListActivity">
     android:layout_height="fill_parent"
     android:divider="@android:color/transparent"
     android:dividerHeight="10.0sp"
+    android:focusableInTouchMode="false"
+    android:clickable="false"
+    android:focusable="false"
 />
 </LinearLayout>

@@ -32,6 +32,16 @@ public class StationActivity extends Activity {
         findViews();
         addButtonListener();
 
+        Station station = null;
+        Bundle b = getIntent().getExtras();
+
+        if(b != null)
+        {
+            station = ((SkiConditionApplication)getApplication()).GetStationManager().get_stations().get(b.getString("Station name"));
+        }
+
+        setData(station);
+
     }
 
     @Override
