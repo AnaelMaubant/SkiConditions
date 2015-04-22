@@ -24,3 +24,8 @@ proguard/
 
 # Log Files
 *.log
+SkiConditions/app/src/main/AndroidManifest.xml
+
+SkiConditions/.idea/gradle.xml
+
+SkiConditions/app/src/main/java/SkiConditionApi/Station.java

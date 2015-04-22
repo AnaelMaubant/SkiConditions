@@ -22,7 +22,7 @@ public class Station {
         this._id = _id;
         this._meteoMediaId = _meteoMediaId;
         this._lastUpdate = _lastUpdate;
-        this._name = _name;
+        this._name= _name;
         this._snowReports = _snowReports;
         this._temperature = _temperature;
         this._weather = _weather;

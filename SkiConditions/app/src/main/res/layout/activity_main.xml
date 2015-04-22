@@ -7,7 +7,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity"
     android:gravity="top"
-    android:weightSum="4">
+    android:weightSum="4"
+    android:background="#E9F8FF">
 
     <LinearLayout
         android:orientation="vertical"
@@ -112,69 +113,78 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#ffb4d7ff"
         android:padding="10dp"
         android:touchscreenBlocksFocus="false"
         android:layout_gravity="bottom"
         android:gravity="bottom"
         android:layout_weight="2"
-        android:weightSum="2">
+        android:weightSum="2"
+        android:background="#C3ECFF">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal"
+            android:weightSum="2">
 
             <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/chercherButton"
                 android:layout_gravity="center_vertical"
                 android:padding="20dp"
                 android:paddingLeft="20dp"
                 android:layout_weight="1"
                 android:layout_margin="10dp"
-                android:src="@mipmap/map1"/>
+                android:src="@mipmap/search"
+                android:background="?android:attr/selectableItemBackground" />
 
             <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/favorisButton"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:padding="10dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="10dp"
+                android:padding="20dp"
+                android:paddingLeft="20dp"
                 android:layout_margin="10dp"
-                android:src="@mipmap/map1"/>
+                android:src="@mipmap/heart2"
+                android:background="?android:attr/selectableItemBackground" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="1">
+            android:weightSum="2">
 
             <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:padding="20dp"
+                android:paddingLeft="20dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
                 android:id="@+id/randomButton"
-                android:layout_weight="1"
-                android:layout_margin="10dp"
-                android:src="@mipmap/map1"/>
+                android:src="@mipmap/diamond"
+                android:background="?android:attr/selectableItemBackground" />
 
             <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/mapButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
+                android:padding="20dp"
+                android:paddingLeft="20dp"
                 android:layout_margin="10dp"
-                android:src="@mipmap/map1"/>
+                android:id="@+id/mapButton"
+                android:src="@mipmap/map1"
+                android:background="?android:attr/selectableItemBackground" />
         </LinearLayout>
     </LinearLayout>
 
