@@ -138,11 +138,6 @@ public class MainActivity extends ActionBarActivity {
                 Toast.makeText(MainActivity.this, "Stations successfully save in db", Toast.LENGTH_SHORT).show();
 
                 new LoadStations().execute();
-
-                Log.d("MAIN", "Stations successfully save in db");
-                stations = sm.get_stations();
-                set_firstPage();
-
             }
         }
     }
@@ -207,8 +202,9 @@ public class MainActivity extends ActionBarActivity {
         button_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
-                Toast.makeText(MainActivity.this, "chercher une station!", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(MainActivity.this, DebugListActivity.class);
+                startActivity(intent);
             }
         });
 
