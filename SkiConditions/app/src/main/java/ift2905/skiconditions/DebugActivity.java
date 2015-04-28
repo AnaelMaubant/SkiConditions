@@ -8,13 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import DbHelper.StationsDbOperations;
 import SkiConditionApi.StationsManager;
-import SkiConditionApi.WebApiConnector;
 
 
 public class DebugActivity extends ActionBarActivity {
@@ -53,7 +47,7 @@ public class DebugActivity extends ActionBarActivity {
         }
         else if (id == R.id.Go_to_list)
         {
-            Intent intent = new Intent(this, DebugListActivity.class);
+            Intent intent = new Intent(this, SearchStationActivity.class);
             startActivity(intent);
         }
 

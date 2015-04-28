@@ -26,6 +26,7 @@ import ift2905.skiconditions.SkiConditionApplication;
  */
 public class StationsAdapter extends BaseAdapter implements Filterable{
 
+    public StationsAdapter() {}
     public StationsAdapter(StationsManager stations)
     {
         _stationManager = stations;
@@ -186,9 +187,9 @@ public class StationsAdapter extends BaseAdapter implements Filterable{
         }
     }
 
-    private ArrayList<Map.Entry<String, Station>> _data;
-    private ValueFilter listViewFilter;
-    private ArrayList<Map.Entry<String, Station>> _stationFilterList;
+    protected ArrayList<Map.Entry<String, Station>> _data;
+    protected ValueFilter listViewFilter;
+    protected ArrayList<Map.Entry<String, Station>> _stationFilterList;
     private HashMap<String, Boolean> _checkboxesStates;
-    private StationsManager _stationManager;
+    protected StationsManager _stationManager;
 }

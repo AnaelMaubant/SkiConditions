@@ -9,48 +9,50 @@
         android:layout_height="50dp"
         android:background="@drawable/listviewborder">
 
-
         <CheckBox
-            android:id="@+id/favorite_checkbox"
+            android:id="@+id/favorite_checkbox1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="?android:attr/starStyle"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
+            android:enabled="false"
+
             />
 
         <ImageView
-            android:id="@+id/weatherimage"
+            android:id="@+id/weatherimage1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/favorite_checkbox"
+            android:layout_toRightOf="@id/favorite_checkbox1"
             />
 
         <TextView
-            android:id="@+id/StationNameText"
+            android:id="@+id/StationNameText1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/weatherimage"
-            android:layout_alignTop="@id/weatherimage"
+            android:layout_toRightOf="@id/weatherimage1"
+            android:layout_alignTop="@id/weatherimage1"
             android:textStyle="bold"
             />
 
         <TextView
-            android:id="@+id/temperatureText"
+            android:id="@+id/temperatureText1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/weatherimage"
-            android:layout_below="@id/StationNameText"
+            android:layout_toRightOf="@id/weatherimage1"
+            android:layout_below="@id/StationNameText1"
             />
 
         <TextView
-            android:id="@+id/trailsText"
+            android:id="@+id/trailsText1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/StationNameText"
+            android:layout_below="@id/StationNameText1"
             android:layout_alignParentRight="true"
             android:layout_marginRight="5dp"
             />
+
 
 
     </RelativeLayout>

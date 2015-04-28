@@ -42,11 +42,12 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-
-        new DownloadStations().execute();
-
         addButtonListener();
+
+        sm = ((SkiConditionApplication)getApplication()).GetStationManager();
+        stations = sm.get_stations();
         addTextListener();
+        set_firstPage();
     }
 
 
@@ -99,72 +100,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-    private class DownloadStations extends AsyncTask<String, String, Boolean> {
 
-        @Override
-        protected Boolean doInBackground(String... params) {
-            Boolean loadIsASuccess = ((SkiConditionApplication) getApplication()).GetStationManager().GetStationsFromWeb();
-            return loadIsASuccess;
-        }
-
-        @Override
-        protected void onPostExecute(Boolean loadIsASuccess) {
-            if (!loadIsASuccess) {
-                Toast.makeText(MainActivity.this, "Error while getting json", Toast.LENGTH_SHORT).show();
-                new LoadStations().execute();
-            } else {
-                Log.d("MAIN", "Json Parsing was successful");
-                Toast.makeText(MainActivity.this, "Json Parsing was successful", Toast.LENGTH_SHORT).show();
-                new SaveStations().execute();
-            }
-        }
-    }
-
-    private class SaveStations extends AsyncTask<String, String, Boolean> {
-
-        @Override
-        protected Boolean doInBackground(String... params) {
-
-            sm = ((SkiConditionApplication) getApplication()).GetStationManager();
-            boolean isASuccess = sm.SaveStations(getBaseContext());
-            return isASuccess;
-        }
-
-        @Override
-        protected void onPostExecute(Boolean saveIsASuccess) {
-            if (!saveIsASuccess) {
-                Toast.makeText(MainActivity.this, "Error while saving stations", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(MainActivity.this, "Stations successfully save in db", Toast.LENGTH_SHORT).show();
-
-                new LoadStations().execute();
-            }
-        }
-    }
-
-    private class LoadStations extends AsyncTask<String, String, Boolean> {
-
-        @Override
-        protected Boolean doInBackground(String... params) {
-
-            sm = ((SkiConditionApplication) getApplication()).GetStationManager();
-            boolean isASuccess = sm.LoadStations(getBaseContext());
-            return isASuccess;
-        }
-
-        @Override
-        protected void onPostExecute(Boolean saveIsASuccess) {
-            if (!saveIsASuccess) {
-                Toast.makeText(MainActivity.this, "Error while loading stations", Toast.LENGTH_SHORT).show();
-            } else {
-                Log.d("MAIN", "Stations successfully load from db");
-                Toast.makeText(MainActivity.this, "Stations successfully load from db", Toast.LENGTH_SHORT).show();
-                stations = sm.get_stations();
-                set_firstPage();
-
-            }
-        }
-    }
 
     private void findViews(){
         view_name = (TextView)findViewById(R.id.nomStation);
@@ -203,7 +139,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(MainActivity.this, DebugListActivity.class);
+                Intent intent = new Intent(MainActivity.this, SearchStationActivity.class);
                 startActivity(intent);
             }
         });
@@ -212,7 +148,8 @@ public class MainActivity extends ActionBarActivity {
         button_favoris.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "montrer tous mes sites preferees!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, FavoritesActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -92,6 +92,7 @@ public class StationsManager {
     {
         synchronized (_pendingFavoriteUpdate)
         {
+            _stations.get(station.get_name()).set_favorite(station.get_favorite());
             _pendingFavoriteUpdate.add(station);
             _pendingFavoriteUpdate.notify();
         }
