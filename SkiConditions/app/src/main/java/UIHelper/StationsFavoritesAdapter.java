@@ -52,9 +52,7 @@ public class StationsFavoritesAdapter extends StationsAdapter{
 
         CheckBox favoriteBox = (CheckBox)result.findViewById(R.id.favorite_checkbox1);
 
-        favoriteBox.setEnabled(false);
         favoriteBox.setChecked(true);
-        favoriteBox.setEnabled(false);
 
 
         ImageView image = (ImageView)result.findViewById(R.id.weatherimage1);
@@ -63,7 +61,7 @@ public class StationsFavoritesAdapter extends StationsAdapter{
         {
             image.setImageResource(R.mipmap.sunnyicon);
         }
-        else if(station.getValue().get_weather().equals("storm-clouds"))
+        else if(station.getValue().get_weather().equals("storm-clouds") && station.getValue().get_temperature().contains("-"))
         {
             image.setImageResource(R.mipmap.snowicon);
         }

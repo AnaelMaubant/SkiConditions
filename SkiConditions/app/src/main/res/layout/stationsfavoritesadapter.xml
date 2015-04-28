@@ -16,7 +16,7 @@
             style="?android:attr/starStyle"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:enabled="false"
+            android:clickable="false"
 
             />
 

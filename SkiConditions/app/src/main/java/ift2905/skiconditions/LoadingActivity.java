@@ -9,6 +9,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import SkiConditionApi.StationsManager;
@@ -21,6 +24,12 @@ public class LoadingActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
         findViewById(R.id.mainSpinner1).setVisibility(View.VISIBLE);
+        ((ImageView)findViewById(R.id.loadingimage1)).setImageResource(R.mipmap.loadingmountain);
+        _progressBar = ((ProgressBar)findViewById(R.id.mainSpinner1));
+        _loadingText = ((TextView)findViewById(R.id.loadingprogresstext));
+        _loadingText.setText("Loading stations from web ...");
+        _progressStatus =1;
+        _progressBar.setProgress(_progressStatus);
         new DownloadStations().execute();
     }
 
@@ -40,8 +49,9 @@ public class LoadingActivity extends Activity {
                 Toast.makeText(LoadingActivity.this, "Error while getting json", Toast.LENGTH_SHORT).show();
                 new LoadStations().execute();
             } else {
-                Log.d("MAIN", "Json Parsing was successful");
-                Toast.makeText(LoadingActivity.this, "Json Parsing was successful", Toast.LENGTH_SHORT).show();
+                _progressStatus ++;
+                _progressBar.setProgress(_progressStatus);
+                _loadingText.setText("Saving stations to database ...");
                 new SaveStations().execute();
             }
         }
@@ -51,7 +61,6 @@ public class LoadingActivity extends Activity {
 
         @Override
         protected Boolean doInBackground(String... params) {
-
             sm = ((SkiConditionApplication) getApplication()).GetStationManager();
             boolean isASuccess = sm.SaveStations(getBaseContext());
             return isASuccess;
@@ -62,8 +71,9 @@ public class LoadingActivity extends Activity {
             if (!saveIsASuccess) {
                 Toast.makeText(LoadingActivity.this, "Error while saving stations", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(LoadingActivity.this, "Stations successfully save in db", Toast.LENGTH_SHORT).show();
-
+                _loadingText.setText("Loading stations from database ...");
+                _progressStatus ++;
+                _progressBar.setProgress(_progressStatus);
                 new LoadStations().execute();
             }
         }
@@ -73,7 +83,6 @@ public class LoadingActivity extends Activity {
 
         @Override
         protected Boolean doInBackground(String... params) {
-
             sm = ((SkiConditionApplication) getApplication()).GetStationManager();
             boolean isASuccess = sm.LoadStations(getBaseContext());
             return isASuccess;
@@ -84,12 +93,17 @@ public class LoadingActivity extends Activity {
             if (!saveIsASuccess) {
                 Toast.makeText(LoadingActivity.this, "Error while loading stations", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(LoadingActivity.this, "Stations successfully load from db", Toast.LENGTH_SHORT).show();
+                _progressStatus ++;
+                _progressBar.setProgress(_progressStatus);
                 Intent intent = new Intent(LoadingActivity.this, MainActivity.class);
                 startActivity(intent);
                 LoadingActivity.this.finish();
             }
         }
     }
+
+    private ProgressBar _progressBar;
+    private TextView _loadingText;
+    private int _progressStatus;
 
 }
