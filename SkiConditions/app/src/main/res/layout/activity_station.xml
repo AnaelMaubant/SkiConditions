@@ -7,64 +7,70 @@
     android:focusable="false"
     android:longClickable="false"
     android:orientation="vertical"
-    android:background="#C3ECFF">
+    android:background="#ffefefef">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:measureWithLargestChild="false"
-        android:gravity="bottom"
         android:id="@+id/bottomButtons"
         android:layout_gravity="bottom"
-        android:weightSum="4">
+        android:weightSum="4"
+        android:background="#ff323232"
+        android:gravity="center_vertical">
 
         <ImageButton
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:id="@+id/stationButton1"
-            android:src="@mipmap/carte"
+            android:src="@mipmap/location"
             android:layout_weight="1"
             android:scaleType="centerInside"
             android:adjustViewBounds="true"
             android:padding="0dp"
-            android:background="#DFF5FF" />
+            android:background="?android:attr/selectableItemBackground" />
         <ImageButton
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:id="@+id/stationButton2"
-            android:src="@mipmap/map2"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:adjustViewBounds="true"
-            android:padding="0dp" />
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/stationButton3"
             android:src="@mipmap/weather"
             android:layout_weight="1"
             android:scaleType="centerInside"
             android:adjustViewBounds="true"
-            android:layout_margin="0dp"
-            android:padding="0dp" />
+            android:padding="0dp"
+            android:background="?android:attr/selectableItemBackground" />
         <ImageButton
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:id="@+id/stationButton3"
+            android:src="@mipmap/phone"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:background="?android:attr/selectableItemBackground" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
             android:id="@+id/stationButton4"
             android:src="@mipmap/website"
             android:layout_weight="1"
             android:scaleType="centerInside"
             android:adjustViewBounds="true"
-            android:padding="0dp" />
+            android:padding="0dp"
+            android:background="?android:attr/selectableItemBackground" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:showDividers="end"
-        android:layout_above="@id/bottomButtons">
+        android:layout_above="@id/bottomButtons"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -105,83 +111,69 @@
 
                 <RelativeLayout
                     android:orientation="horizontal"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="fill_vertical"
-                    android:layout_marginBottom="20dp">
+                    android:gravity="center_vertical|right"
+                    android:layout_marginBottom="30dp"
+                    android:layout_gravity="right"
+                    android:touchscreenBlocksFocus="false"
+                    android:layout_marginTop="10dp">
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:orientation="vertical"
-                        android:id="@+id/tempIcon">
-
-                        <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:id="@+id/viewTemp" />
-
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
-                            android:layout_below="@id/viewTemp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:text="n"
-                                android:id="@+id/temperature_activity2"
-                                android:textSize="40sp"
-                                android:layout_marginRight="10dp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:text="C"
-                                android:id="@+id/textView"
-                                android:textSize="40sp" />
-                        </LinearLayout>
-
-                    </RelativeLayout>
+                    <ImageView
+                        android:layout_width="100sp"
+                        android:layout_height="100sp"
+                        android:id="@+id/viewTemp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:weightSum="1"
-                        android:layout_gravity="center_vertical|right"
-                        android:layout_alignParentRight="true"
                         android:orientation="horizontal"
-                        android:layout_centerVertical="true"
-                        android:layout_toRightOf="@id/tempIcon"
-                        android:gravity="center_vertical|right">
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_below="@id/viewTemp"
+                        android:id="@+id/temperature"
+                        >
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:text="n"
-                                android:id="@+id/nomStation_activity2"
-                                android:layout_gravity="bottom|right"
-                                android:textSize="25dp"
-                                android:layout_marginRight="10dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="n"
+                            android:id="@+id/temperature_activity2"
+                            android:textSize="60dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="10dp" />
 
-                            <ImageButton
-                                android:layout_width="30dp"
-                                android:layout_height="fill_parent"
-                                android:id="@+id/favorisButton"
-                                android:background="?android:attr/selectableItemBackground"
-                                android:layout_toEndOf="@id/nomStation_activity2"
-                                android:src="@mipmap/heart1"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter" />
-
-
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="&#xb0;C"
+                            android:id="@+id/textView"
+                            android:textSize="35dp" />
                     </LinearLayout>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_alignTop="@+id/viewTemp"
+                        android:layout_toEndOf="@id/temperature"
+                        android:layout_centerVertical="true"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="n"
+                        android:id="@+id/nomStation_activity2"
+                        android:textSize="25dp"
+                        android:layout_toLeftOf="@+id/favorite_button"
+                        android:layout_toRightOf="@+id/viewTemp"
+                        android:layout_marginRight="5dp"
+                        android:gravity="right" />
+
+                    <CheckBox
+                        android:id="@+id/favorite_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        style="?android:attr/starStyle" />
 
                 </RelativeLayout>
 
@@ -208,7 +200,7 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="n / n"
                         android:id="@+id/pistes_activity2"
-                        android:textSize="30dp"
+                        android:textSize="40dp"
                         android:autoText="false" />
                 </LinearLayout>
 
@@ -260,11 +252,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="180dp"
                             android:id="@+id/profondeur"
-                            android:background="#D6F3FF"
+                            android:background="@mipmap/rule"
                             android:autoText="false"
                             android:text="-"
-                            android:textSize="40dp"
-                            android:gravity="center_vertical|center_horizontal" />
+                            android:textSize="30dp"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:paddingLeft="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:textColor="#ff000000" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -272,7 +267,8 @@
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_weight="1"
-                        android:layout_marginLeft="4dp">
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginBottom="20dp">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -286,10 +282,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="180dp"
                             android:id="@+id/derniere_neige"
-                            android:background="#D6F3FF"
+                            android:background="@mipmap/rule"
                             android:gravity="center_vertical|center_horizontal"
                             android:text="-"
-                            android:textSize="40dp" />
+                            android:textSize="30dp"
+                            android:paddingLeft="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:textColor="#ff000000" />
                     </LinearLayout>
                 </LinearLayout>
 

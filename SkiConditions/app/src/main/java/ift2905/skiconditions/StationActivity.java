@@ -23,7 +23,7 @@ public class StationActivity extends Activity {
     ImageButton imgButton1,imgButton2,imgButton3,imgButton4;
     TextView view_name,view_temp,view_pistes,view_updateDate,view_profondeur,view_neigeDerniere,view_condition;
     TextView view_snowReport1, view_snowReport2,view_snowReport3,view_snowReport4,view_snowReport5,view_snowReport6,view_snowReport7;
-
+    ImageView ImgView_temp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,8 +116,7 @@ public class StationActivity extends Activity {
         view_snowReport5=(TextView)findViewById(R.id.snow5);
         view_snowReport6=(TextView)findViewById(R.id.snow6);
         view_snowReport7=(TextView)findViewById(R.id.snow7);
-
-
+        ImgView_temp=(ImageView)findViewById(R.id.viewTemp);
 
     }
 
@@ -147,6 +146,21 @@ public class StationActivity extends Activity {
         view_snowReport5.setText(snowreport.get("snow5"));
         view_snowReport6.setText(snowreport.get("snow6"));
         view_snowReport7.setText(snowreport.get("snow7"));
+
+        // mettre l'icon de temperature dans l'interface
+        if(s.get_weather().equals("sunny"))
+        {
+            ImgView_temp.setImageResource(R.mipmap.sunnyicon);
+        }
+        else if(s.get_weather().equals("storm-clouds"))
+        {
+            ImgView_temp.setImageResource(R.mipmap.snowicon);
+        }
+        else
+        {
+            ImgView_temp.setImageResource(R.mipmap.cloudyicon);
+        }
+
 
     }
 }
