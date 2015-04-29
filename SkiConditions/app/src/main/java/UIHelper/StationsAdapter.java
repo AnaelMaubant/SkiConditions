@@ -111,7 +111,7 @@ public class StationsAdapter extends BaseAdapter implements Filterable{
         {
             image.setImageResource(R.mipmap.sunnyicon);
         }
-        else if(station.getValue().get_weather().equals("storm-clouds"))
+        else if(station.getValue().get_weather().equals("storm-clouds") && station.getValue().get_temperature().contains("-"))
         {
             image.setImageResource(R.mipmap.snowicon);
         }

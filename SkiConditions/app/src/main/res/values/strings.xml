@@ -19,5 +19,6 @@
     <string name="title_activity_main_activity2">MainActivity2</string>
     <string name="title_activity_favorites">FavoritesActivity</string>
     <string name="title_activity_loading">LoadingActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 
 </resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference
+        android:title="Station d'acceuil"
+        android:key="welcome_station"
+        android:summary="Entrez le nom de votre station"
+        android:defaultValue="Ski Bromont">
+
+    </EditTextPreference>
+</PreferenceScreen>

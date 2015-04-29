@@ -1,7 +1,9 @@
 package ift2905.skiconditions;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,10 +29,9 @@ public class MainActivity extends ActionBarActivity {
     ImageView tempIcon;
     String t,n,w,d;
     Pair<Integer,Integer> p;
-    Station s;
-
-    //station affichiee dans la page d'accueil
-    String stationPrincipal="Centre plein air Mont Kanasuta";
+    Station mainStation;
+    SharedPreferences.OnSharedPreferenceChangeListener listener;
+    SharedPreferences prefs;
 
     StationsManager sm;
     HashMap<String, Station> stations;
@@ -44,8 +45,11 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         addButtonListener();
 
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        CreatePrefsListener();
         sm = ((SkiConditionApplication)getApplication()).GetStationManager();
         stations = sm.get_stations();
+        mainStation = GetMainStation();
         addTextListener();
         set_firstPage();
     }
@@ -99,6 +103,29 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
+    Station GetMainStation()
+    {
+        String mainStationName = prefs.getString("welcome_station", "");
+        mainStationName = mainStationName.replaceAll("\\s+$","");
+        mainStationName = mainStationName.replaceAll("\n", "");
+        return stations.get(mainStationName);
+    }
+
+    public void CreatePrefsListener()
+    {
+        listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                String mainStationName = sharedPreferences.getString(key, "");
+                mainStationName = mainStationName.replaceAll("\\s+$","");
+                mainStationName = mainStationName.replaceAll("\n", "");
+                mainStation = stations.get(mainStationName);
+                showResults();
+            }
+        };
+        prefs.registerOnSharedPreferenceChangeListener(listener);
+    }
+
 
 
 
@@ -114,15 +141,16 @@ public class MainActivity extends ActionBarActivity {
     //first page
     private void showResults(){
         // on recupere la premiere station
-        s = stations.get(stationPrincipal);
-        t = s.get_temperature();
-        n = s.get_name();
-        p = s.get_trails();
-        w = s.get_weather();
-        d = s.get_lastUpdate();
+
+
+        t = mainStation.get_temperature();
+        n = mainStation.get_name();
+        p = mainStation.get_trails();
+        w = mainStation.get_weather();
+        d = mainStation.get_lastUpdate();
 
         // mettre ca dans l interface
-        view_name.setText(s.get_name());
+        view_name.setText(mainStation.get_name());
         view_temp.setText(t);
         view_pistes.setText(p.first + "/" + p.second);
         view_updateDate.setText(d);
@@ -165,7 +193,8 @@ public class MainActivity extends ActionBarActivity {
         button_map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "montrer la carte qui indique tous les stations!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -174,15 +203,15 @@ public class MainActivity extends ActionBarActivity {
         TextView btn = (TextView) findViewById(R.id.nomStation);
         btn.setOnClickListener(new View.OnClickListener() {
 
-        @Override
-        public void onClick (View v){
-            Toast.makeText(MainActivity.this, "Afficher maintenant la page de details de cette station!!", Toast.LENGTH_SHORT).show();
+                                   @Override
+                                   public void onClick (View v){
+                                       Toast.makeText(MainActivity.this, "Afficher maintenant la page de details de cette station!!", Toast.LENGTH_SHORT).show();
 
-        }
+                                   }
+                               }
+
+        );
+
     }
-
-    );
-
-}
 
 }
