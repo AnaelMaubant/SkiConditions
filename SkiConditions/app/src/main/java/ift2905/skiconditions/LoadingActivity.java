@@ -3,6 +3,7 @@ package ift2905.skiconditions;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +31,7 @@ public class LoadingActivity extends Activity {
         _loadingText.setText("Loading stations from web ...");
         _progressStatus =1;
         _progressBar.setProgress(_progressStatus);
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         new DownloadStations().execute();
     }
 
