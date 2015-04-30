@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="Preferences">
+    <PreferenceCategory
+        android:title="Preferences">
     <EditTextPreference
         android:title="Station d'acceuil"
         android:key="welcome_station"
@@ -7,4 +10,5 @@
         android:defaultValue="Ski Bromont">
 
     </EditTextPreference>
+    </PreferenceCategory>
 </PreferenceScreen>

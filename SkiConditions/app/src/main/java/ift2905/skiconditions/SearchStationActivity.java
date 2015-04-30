@@ -27,6 +27,14 @@ public class SearchStationActivity extends ListActivity {
     }
 
     @Override
+    public void onResume()
+    {
+        super.onResume();
+        adapter = new StationsAdapter(((SkiConditionApplication)getApplication()).GetStationManager());
+        setListAdapter(adapter);
+    }
+
+    @Override
     public void onListItemClick(ListView parent, View w, int position, long id)
     {
         String stationName = adapter.getItem(position).getKey();

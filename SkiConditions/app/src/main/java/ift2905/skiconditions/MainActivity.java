@@ -1,5 +1,6 @@
 package ift2905.skiconditions;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -26,7 +27,7 @@ import SkiConditionApi.Station;
 import SkiConditionApi.StationsManager;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     ImageButton button_search,button_favoris,button_random,button_map;
     TextView view_name,view_temp,view_pistes,view_updateDate;
@@ -34,6 +35,7 @@ public class MainActivity extends ActionBarActivity {
     String t,n,w,d;
     Pair<Integer,Integer> p;
     Station mainStation;
+    Station defaultMainStation;
     SharedPreferences.OnSharedPreferenceChangeListener listener;
     SharedPreferences prefs;
 
@@ -54,48 +56,11 @@ public class MainActivity extends ActionBarActivity {
         sm = ((SkiConditionApplication)getApplication()).GetStationManager();
         stations = sm.get_stations();
         mainStation = GetMainStation();
+        defaultMainStation = mainStation;
         set_firstPage();
     }
 
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        super.onOptionsItemSelected(item);
-
-        switch (item.getItemId()) {
-            case R.id.pref:
-                Toast.makeText(getBaseContext(), "You selected Preference", Toast.LENGTH_SHORT).show();
-
-                return true;
-
-            case R.id.aide:
-                Toast.makeText(getBaseContext(), "You selected Aide", Toast.LENGTH_SHORT).show();
-                return true;
-
-            case R.id.info:
-                Toast.makeText(getBaseContext(), "You selected Info ", Toast.LENGTH_SHORT).show();
-                return true;
-
-            case R.id.action_debug:
-                StartDebugActivity();
-                return true;
-        }
-        return true;
-    }
-
-    public void StartDebugActivity() {
-        Intent intent = new Intent(this, DebugActivity.class);
-        startActivity(intent);
-    }
 
     Station GetMainStation()
     {
@@ -113,7 +78,19 @@ public class MainActivity extends ActionBarActivity {
                 String mainStationName = sharedPreferences.getString(key, "");
                 mainStationName = mainStationName.replaceAll("\\s+$","");
                 mainStationName = mainStationName.replaceAll("\n", "");
-                mainStation = stations.get(mainStationName);
+                Station station = stations.get(mainStationName);
+                if(station == null)
+                {
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString("welcome_station", mainStation.get_name());
+                    editor.apply();
+                }
+                else
+                {
+                    mainStation = station;
+                }
+
+
                 showResults();
             }
         };

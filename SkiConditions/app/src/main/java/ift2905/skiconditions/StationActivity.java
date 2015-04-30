@@ -9,6 +9,8 @@ import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,6 +26,7 @@ public class StationActivity extends Activity {
     TextView view_name,view_temp,view_pistes,view_updateDate,view_profondeur,view_neigeDerniere,view_condition;
     TextView view_snowReport1, view_snowReport2,view_snowReport3,view_snowReport4,view_snowReport5,view_snowReport6,view_snowReport7;
     ImageView ImgView_temp;
+    CheckBox favoriteBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,10 +120,11 @@ public class StationActivity extends Activity {
         view_snowReport6=(TextView)findViewById(R.id.snow6);
         view_snowReport7=(TextView)findViewById(R.id.snow7);
         ImgView_temp=(ImageView)findViewById(R.id.viewTemp);
+        favoriteBox = (CheckBox)findViewById(R.id.favorite_button);
 
     }
 
-    public void setData(Station s){
+    public void setData(final Station s){
 
         String name = s.get_name();
         String temp = s.get_temperature();
@@ -147,12 +151,33 @@ public class StationActivity extends Activity {
         view_snowReport6.setText(snowreport.get("snow6"));
         view_snowReport7.setText(snowreport.get("snow7"));
 
+        if(s.get_favorite()==1)
+        {
+            favoriteBox.setChecked(true);
+        }
+
+        favoriteBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                {
+                    s.set_favorite(1);
+                }
+                else
+                {
+                    s.set_favorite(0);
+                }
+
+                ((SkiConditionApplication)getApplication()).GetStationManager().NotifyFavoriteChanged(s);
+            }
+        });
+
         // mettre l'icon de temperature dans l'interface
         if(s.get_weather().equals("sunny"))
         {
             ImgView_temp.setImageResource(R.mipmap.sunnyicon);
         }
-        else if(s.get_weather().equals("storm-clouds"))
+        else if(s.get_weather().equals("storm-clouds")&& s.get_temperature().contains("-"))
         {
             ImgView_temp.setImageResource(R.mipmap.snowicon);
         }

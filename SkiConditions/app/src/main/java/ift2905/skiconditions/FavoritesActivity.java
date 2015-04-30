@@ -23,4 +23,12 @@ public class FavoritesActivity extends SearchStationActivity {
         AddSearchListener();
     }
 
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        adapter = new StationsFavoritesAdapter(((SkiConditionApplication)getApplication()).GetStationManager());
+        setListAdapter(adapter);
+    }
+
 }
